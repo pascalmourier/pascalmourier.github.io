@@ -112,16 +112,12 @@
     .feature-mark { position: absolute; top: 23px; right: 24px; width: 30px; height: 30px; border: 1px solid rgba(54, 231, 242, .38); border-radius: 50%; box-shadow: inset 0 0 10px rgba(54, 231, 242, .25), 0 0 20px rgba(54, 231, 242, .08); }
     .feature-card:nth-child(2) .feature-mark { border-color: rgba(189, 99, 255, .5); box-shadow: inset 0 0 10px rgba(189, 99, 255, .27), 0 0 20px rgba(189, 99, 255, .08); }
     .feature-card:nth-child(3) .feature-mark { border-color: rgba(255, 195, 71, .52); box-shadow: inset 0 0 10px rgba(255, 195, 71, .25), 0 0 20px rgba(255, 195, 71, .08); }
-    .experience { display: grid; grid-template-columns: .85fr 1.15fr; gap: 60px; align-items: center; }
-    .experience-copy p { max-width: 440px; color: var(--muted); }
-    .experience-visual { position: relative; display: grid; min-height: 320px; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: radial-gradient(ellipse at center, rgba(31, 43, 97, .72), rgba(8, 12, 31, .9) 70%); }
-    .field-ring { position: absolute; width: min(70%, 320px); aspect-ratio: 1; border: 1px dashed rgba(145, 171, 255, .4); border-radius: 50%; box-shadow: 0 0 0 42px rgba(84, 110, 220, .045), 0 0 0 95px rgba(84, 110, 220, .025); }
-    .field-ring::before { position: absolute; top: 4%; left: 44%; width: 11px; height: 11px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 20px var(--cyan); content: ""; }
-    .field-ring::after { position: absolute; right: 12%; bottom: 13%; width: 11px; height: 11px; border-radius: 50%; background: #ed50ff; box-shadow: 0 0 20px #ed50ff; content: ""; }
-    .tether { position: absolute; z-index: 1; width: 39%; height: 2px; background: linear-gradient(90deg, var(--cyan), #fff, #ff386b); box-shadow: 0 0 16px rgba(255, 255, 255, .9); transform: rotate(-31deg); }
-    .singularity { position: relative; z-index: 2; display: grid; width: 66px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #02030a 0 44%, #13204a 49%, #070817 70%); box-shadow: 0 0 34px rgba(79, 97, 232, .5), 0 0 70px rgba(47, 112, 243, .2); }
-    .singularity::before { position: absolute; inset: -9px; border: 1px solid rgba(73, 176, 255, .65); border-radius: 50%; content: ""; }
-    .visual-label { position: absolute; bottom: 20px; left: 22px; color: #8898b8; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+    .bonus-slow::after { border-color: rgba(189, 99, 255, .22); box-shadow: 0 0 0 18px rgba(189, 99, 255, .04), 0 0 0 38px rgba(189, 99, 255, .025); }
+    .bonus-magnet::after { border-color: rgba(255, 195, 71, .23); box-shadow: 0 0 0 18px rgba(255, 195, 71, .04), 0 0 0 38px rgba(255, 195, 71, .025); }
+    .bonus-seed::after { border-color: rgba(54, 156, 255, .25); box-shadow: 0 0 0 18px rgba(54, 156, 255, .045), 0 0 0 38px rgba(54, 156, 255, .025); }
+    .bonus-slow .feature-mark { border-color: rgba(189, 99, 255, .62); box-shadow: inset 0 0 10px rgba(189, 99, 255, .3), 0 0 20px rgba(189, 99, 255, .12); }
+    .bonus-magnet .feature-mark { border-color: rgba(255, 195, 71, .66); box-shadow: inset 0 0 10px rgba(255, 195, 71, .3), 0 0 20px rgba(255, 195, 71, .12); }
+    .bonus-seed .feature-mark { border-color: rgba(54, 156, 255, .68); box-shadow: inset 0 0 10px rgba(54, 156, 255, .3), 0 0 20px rgba(54, 156, 255, .13); }
     .closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 34px 38px; border: 1px solid rgba(54, 231, 242, .2); border-radius: 18px; background: linear-gradient(100deg, rgba(16, 44, 73, .62), rgba(36, 22, 70, .6)); }
     .closing p { margin: 5px 0 0; color: var(--muted); font-size: .88rem; }
     .closing h2 { font-size: clamp(1.55rem, 3vw, 2.2rem); }
@@ -144,8 +140,6 @@
       .feature-grid { grid-template-columns: 1fr; }
       .feature-card { min-height: 205px; }
       .feature-card h3 { margin-top: 29px; }
-      .experience { grid-template-columns: 1fr; gap: 27px; }
-      .experience-visual { min-height: 280px; }
       .closing { align-items: flex-start; flex-direction: column; padding: 28px; }
       footer { align-items: flex-start; flex-direction: column; }
     }
@@ -219,18 +213,30 @@
     </section>
 
     <section class="section" id="univers">
-      <div class="shell experience">
-        <div class="experience-copy">
-          <p class="kicker">Au cœur de la partie</p>
-          <h2>Chaque geste compte.</h2>
-          <p>Relie les billes, pousse les autres hors de danger et déclenche des fissions pour faire apparaître des bonus. Choisis le bon instant : quelques secondes peuvent transformer une partie entière.</p>
-          <a class="button" href="support.html">En savoir plus <span class="button-arrow" aria-hidden="true">↗</span></a>
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">Bonus de survie</p>
+            <h2>Chaque geste compte.</h2>
+          </div>
+          <p>Trois effets pour reprendre le contrôle du plateau — à utiliser au bon moment, car le trou noir central ne ralentit jamais.</p>
         </div>
-        <div class="experience-visual" role="img" aria-label="Illustration abstraite : une corde relie deux billes en orbite autour d’un trou noir">
-          <div class="field-ring"></div>
-          <div class="tether"></div>
-          <div class="singularity"></div>
-          <span class="visual-label">Gravité · tension · impulsion</span>
+        <div class="feature-grid">
+          <article class="feature-card bonus-card bonus-slow">
+            <span class="feature-number">VIOLET / RALENTISSEMENT</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Zone de ralentissement</h3>
+            <p>Les billes dans la zone avancent beaucoup moins vite vers le centre. Attention : un seul champ de ralentissement peut être posé à la fois.</p>
+          </article>
+          <article class="feature-card bonus-card bonus-magnet">
+            <span class="feature-number">JAUNE / AIMANT</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Aimant</h3>
+            <p>Les billes sont attirées et regroupées au centre de la zone. Quand l’effet cède, elles partent dans toutes les directions.</p>
+          </article>
+          <article class="feature-card bonus-card bonus-seed">
+            <span class="feature-number">BLEU / PLUS RARE</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Recréer des billes</h3>
+            <p>Ce bonus rare fait apparaître de nouvelles billes sur le plateau quand tu commences à en manquer.</p>
+          </article>
         </div>
       </div>
     </section>
