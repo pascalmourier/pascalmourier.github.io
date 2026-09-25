@@ -3,28 +3,259 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Warp Pulse, jeu d’arcade tactile pour iPhone et iPad.">
+  <meta name="theme-color" content="#060817">
+  <meta name="description" content="Warp Pulse — un jeu d’arcade tactile où chaque geste peut changer l’orbite. Survivez au trou noir et relevez les défis des Stages.">
   <title>Warp Pulse — Face au vide</title>
+  <link rel="icon" type="image/png" href="assets/app-icon.png">
   <style>
-    :root { color-scheme: dark; font: 18px/1.6 system-ui, sans-serif; }
-    body { max-width: 760px; margin: 0 auto; padding: 3rem 1.25rem; background: #080b18; color: #e9f5ff; }
-    h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1; letter-spacing: .08em; }
-    a { color: #79dcff; }
-    nav { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 2rem; }
-    .tagline { color: #9fb6cf; font-size: 1.25rem; }
+    :root {
+      color-scheme: dark;
+      --night: #060817;
+      --panel: rgba(13, 20, 47, .76);
+      --line: rgba(148, 191, 255, .17);
+      --text: #f3f7ff;
+      --muted: #9baac7;
+      --cyan: #36e7f2;
+      --violet: #bd63ff;
+      --green: #8bff55;
+      --orange: #ffc347;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(ellipse at 77% 11%, rgba(51, 73, 173, .22), transparent 34rem),
+        radial-gradient(ellipse at 8% 44%, rgba(30, 204, 224, .09), transparent 30rem),
+        var(--night);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      opacity: .23;
+      background-image: radial-gradient(#b7d8ff 0.7px, transparent 0.7px);
+      background-size: 51px 51px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 5px; }
+    .shell { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .skip-link { position: absolute; left: -9999px; top: 1rem; }
+    .skip-link:focus { left: 1rem; z-index: 10; padding: .5rem 1rem; background: var(--night); }
+    .site-header {
+      display: flex;
+      min-height: 88px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(157, 186, 255, .11);
+    }
+    .wordmark { display: flex; align-items: center; gap: 12px; font-size: .8rem; font-weight: 800; letter-spacing: .2em; }
+    .wordmark img { width: 38px; height: 38px; border-radius: 12px; box-shadow: 0 0 24px rgba(51, 231, 242, .2); }
+    nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); color: #bdc9df; font-size: .88rem; }
+    nav a:hover, footer a:hover { color: var(--cyan); }
+    .nav-contact { padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; }
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: min(720px, calc(100svh - 88px));
+      grid-template-columns: 1.03fr .97fr;
+      align-items: center;
+      gap: 30px;
+      padding: 72px 0 94px;
+    }
+    .hero-copy { position: relative; z-index: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; color: #a9c7eb; font-size: .72rem; font-weight: 750; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { width: 30px; height: 1px; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); content: ""; }
+    .hero-logo { display: block; width: min(100%, 570px); height: auto; margin: 28px 0 14px -10px; filter: drop-shadow(0 0 28px rgba(52, 231, 242, .12)); }
+    .hero h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    .tagline { margin: 0; color: #d7e3fa; font-size: clamp(1.2rem, 2.1vw, 1.65rem); font-weight: 520; letter-spacing: .015em; }
+    .intro { max-width: 510px; margin: 20px 0 0; color: var(--muted); font-size: 1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 0 19px; border: 1px solid var(--line); border-radius: 999px; font-size: .88rem; font-weight: 700; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); border-color: rgba(54, 231, 242, .6); }
+    .button-primary { border-color: rgba(54, 231, 242, .45); background: linear-gradient(120deg, rgba(54, 231, 242, .16), rgba(189, 99, 255, .15)); box-shadow: 0 0 30px rgba(54, 231, 242, .08); }
+    .button-arrow { color: var(--cyan); font-size: 1.1rem; }
+    .hero-art { position: relative; display: grid; min-height: 450px; place-items: center; }
+    .art-glow { position: absolute; width: min(88%, 440px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(30, 115, 233, .25), rgba(123, 43, 208, .13) 42%, transparent 72%); filter: blur(12px); }
+    .orbit { position: absolute; width: min(100%, 480px); aspect-ratio: 1; border: 1px solid rgba(79, 159, 255, .25); border-radius: 50%; transform: rotate(-19deg) scaleY(.48); box-shadow: 0 0 26px rgba(54, 231, 242, .06), inset 0 0 26px rgba(189, 99, 255, .04); }
+    .orbit.orbit-two { width: min(85%, 405px); border-color: rgba(189, 99, 255, .29); transform: rotate(32deg) scaleY(.67); }
+    .orbit::before, .orbit::after { position: absolute; width: 13px; height: 13px; border: 2px solid var(--cyan); border-radius: 50%; background: #071127; box-shadow: 0 0 17px var(--cyan); content: ""; }
+    .orbit::before { top: 11%; left: 15%; }
+    .orbit::after { right: 13%; bottom: 17%; border-color: var(--green); box-shadow: 0 0 17px var(--green); }
+    .hero-icon { position: relative; z-index: 1; width: min(70%, 318px); aspect-ratio: 1; border: 1px solid rgba(193, 210, 255, .28); border-radius: 27%; object-fit: cover; box-shadow: 0 30px 100px rgba(0, 0, 0, .5), 0 0 75px rgba(73, 77, 220, .28); }
+    .art-caption { position: absolute; right: 3%; bottom: 1%; display: flex; align-items: center; gap: 9px; color: #8798b9; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    .art-caption::before { width: 6px; height: 6px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 12px var(--violet); content: ""; }
+    .scroll-cue { position: absolute; bottom: 28px; left: 0; display: flex; align-items: center; gap: 12px; color: #7787a7; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; }
+    .scroll-cue::before { width: 1px; height: 26px; background: linear-gradient(var(--cyan), transparent); content: ""; }
+    .section { padding: 96px 0; border-top: 1px solid rgba(157, 186, 255, .1); }
+    .section-heading { display: grid; grid-template-columns: 1fr minmax(240px, 430px); align-items: end; gap: 30px; margin-bottom: 38px; }
+    .kicker { margin: 0 0 10px; color: var(--cyan); font-size: .69rem; font-weight: 750; letter-spacing: .2em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.045em; }
+    .section-heading > p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feature-card { position: relative; min-height: 250px; overflow: hidden; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(20, 29, 63, .72), rgba(9, 13, 32, .72)); }
+    .feature-card::after { position: absolute; right: -55px; bottom: -80px; width: 190px; height: 190px; border: 1px solid rgba(54, 231, 242, .15); border-radius: 50%; box-shadow: 0 0 0 18px rgba(54, 231, 242, .025), 0 0 0 38px rgba(54, 231, 242, .02); content: ""; }
+    .feature-card:nth-child(2)::after { border-color: rgba(189, 99, 255, .2); box-shadow: 0 0 0 18px rgba(189, 99, 255, .035), 0 0 0 38px rgba(189, 99, 255, .02); }
+    .feature-card:nth-child(3)::after { border-color: rgba(255, 195, 71, .18); box-shadow: 0 0 0 18px rgba(255, 195, 71, .035), 0 0 0 38px rgba(255, 195, 71, .02); }
+    .feature-number { color: #7687aa; font-size: .68rem; letter-spacing: .18em; }
+    .feature-card h3 { margin: 43px 0 10px; font-size: 1.27rem; letter-spacing: -.02em; }
+    .feature-card p { max-width: 310px; margin: 0; color: var(--muted); font-size: .88rem; }
+    .feature-mark { position: absolute; top: 23px; right: 24px; width: 30px; height: 30px; border: 1px solid rgba(54, 231, 242, .38); border-radius: 50%; box-shadow: inset 0 0 10px rgba(54, 231, 242, .25), 0 0 20px rgba(54, 231, 242, .08); }
+    .feature-card:nth-child(2) .feature-mark { border-color: rgba(189, 99, 255, .5); box-shadow: inset 0 0 10px rgba(189, 99, 255, .27), 0 0 20px rgba(189, 99, 255, .08); }
+    .feature-card:nth-child(3) .feature-mark { border-color: rgba(255, 195, 71, .52); box-shadow: inset 0 0 10px rgba(255, 195, 71, .25), 0 0 20px rgba(255, 195, 71, .08); }
+    .experience { display: grid; grid-template-columns: .85fr 1.15fr; gap: 60px; align-items: center; }
+    .experience-copy p { max-width: 440px; color: var(--muted); }
+    .experience-visual { position: relative; display: grid; min-height: 320px; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: radial-gradient(ellipse at center, rgba(31, 43, 97, .72), rgba(8, 12, 31, .9) 70%); }
+    .field-ring { position: absolute; width: min(70%, 320px); aspect-ratio: 1; border: 1px dashed rgba(145, 171, 255, .4); border-radius: 50%; box-shadow: 0 0 0 42px rgba(84, 110, 220, .045), 0 0 0 95px rgba(84, 110, 220, .025); }
+    .field-ring::before { position: absolute; top: 4%; left: 44%; width: 11px; height: 11px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 20px var(--cyan); content: ""; }
+    .field-ring::after { position: absolute; right: 12%; bottom: 13%; width: 11px; height: 11px; border-radius: 50%; background: #ed50ff; box-shadow: 0 0 20px #ed50ff; content: ""; }
+    .tether { position: absolute; z-index: 1; width: 39%; height: 2px; background: linear-gradient(90deg, var(--cyan), #fff, #ff386b); box-shadow: 0 0 16px rgba(255, 255, 255, .9); transform: rotate(-31deg); }
+    .singularity { position: relative; z-index: 2; display: grid; width: 66px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: radial-gradient(circle at 45% 40%, #02030a 0 44%, #13204a 49%, #070817 70%); box-shadow: 0 0 34px rgba(79, 97, 232, .5), 0 0 70px rgba(47, 112, 243, .2); }
+    .singularity::before { position: absolute; inset: -9px; border: 1px solid rgba(73, 176, 255, .65); border-radius: 50%; content: ""; }
+    .visual-label { position: absolute; bottom: 20px; left: 22px; color: #8898b8; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+    .closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 34px 38px; border: 1px solid rgba(54, 231, 242, .2); border-radius: 18px; background: linear-gradient(100deg, rgba(16, 44, 73, .62), rgba(36, 22, 70, .6)); }
+    .closing p { margin: 5px 0 0; color: var(--muted); font-size: .88rem; }
+    .closing h2 { font-size: clamp(1.55rem, 3vw, 2.2rem); }
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px 0 38px; border-top: 1px solid rgba(157, 186, 255, .1); color: #8998b3; font-size: .78rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 36px, 560px); }
+      .site-header { min-height: 72px; }
+      nav { gap: 16px; font-size: .8rem; }
+      nav .nav-contact { display: none; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 2px; padding: 62px 0 78px; }
+      .hero-logo { max-width: 490px; margin-top: 22px; }
+      .hero-art { min-height: 370px; margin-top: 12px; }
+      .hero-icon { width: min(62%, 270px); }
+      .orbit { width: min(95%, 390px); }
+      .orbit.orbit-two { width: min(80%, 330px); }
+      .scroll-cue { bottom: 20px; }
+      .section { padding: 70px 0; }
+      .section-heading { grid-template-columns: 1fr; gap: 14px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { min-height: 205px; }
+      .feature-card h3 { margin-top: 29px; }
+      .experience { grid-template-columns: 1fr; gap: 27px; }
+      .experience-visual { min-height: 280px; }
+      .closing { align-items: flex-start; flex-direction: column; padding: 28px; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
   </style>
 </head>
 <body>
-  <main>
-    <p>Jeu d’arcade pour iPhone et iPad</p>
-    <h1>WARP PULSE</h1>
-    <p class="tagline">Face au vide</p>
-    <p>Gardez les billes en orbite, tissez des cordes et déjouez l’attraction du trou noir. Jouez en Survie ou relevez les défis du mode Stages.</p>
-    <nav aria-label="Informations">
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <header class="site-header shell">
+    <a class="wordmark" href="#top" aria-label="Warp Pulse, accueil">
+      <img src="assets/app-icon.png" alt="">
+      <span>WARP PULSE</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <a href="#jeu">Le jeu</a>
+      <a href="#univers">L’univers</a>
+      <a class="nav-contact" href="support.html">Assistance <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="hero shell" id="top" aria-labelledby="titre-principal">
+      <div class="hero-copy">
+        <p class="eyebrow">Arcade tactile · iPhone &amp; iPad</p>
+        <h1 id="titre-principal">Warp Pulse — Face au vide</h1>
+        <img class="hero-logo" src="assets/title-logo.png" alt="Warp Pulse">
+        <p class="tagline">Face au vide.</p>
+        <p class="intro">Gardez les billes en orbite. Tissez des cordes, déclenchez des fissions et résistez à l’attraction du trou noir. Ici, chaque geste peut changer le cours de la partie.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#jeu">Découvrir le jeu <span class="button-arrow" aria-hidden="true">↓</span></a>
+          <a class="button" href="support.html">Une question ? <span class="button-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Visuel de Warp Pulse, billes en orbite autour du trou noir">
+        <div class="art-glow"></div>
+        <div class="orbit"></div>
+        <div class="orbit orbit-two"></div>
+        <img class="hero-icon" src="assets/app-icon.png" alt="Illustration de billes colorées autour d’un trou noir">
+        <span class="art-caption">Maintenez l’orbite</span>
+      </div>
+      <a class="scroll-cue" href="#jeu">Explorer l’univers</a>
+    </section>
+
+    <section class="section" id="jeu">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">Une partie. Mille trajectoires.</p>
+            <h2>Le chaos, au bout du doigt.</h2>
+          </div>
+          <p>Un jeu d’arcade en paysage où l’instinct et le timing se rencontrent. Chaque seconde rapproche les billes du centre — à toi de garder le contrôle.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-number">01 / SURVIE</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Tiens bon.</h3>
+            <p>Repousse l’inévitable et bats ton meilleur temps tandis que la gravité gagne du terrain.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02 / CORDES</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Relie. Vise. Lance.</h3>
+            <p>Relie deux billes, ajuste ta trajectoire et libère une onde capable de tout faire basculer.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03 / STAGES</span><span class="feature-mark" aria-hidden="true"></span>
+            <h3>Change de stratégie.</h3>
+            <p>Affronte des objectifs différents et trouve le bon geste pour passer à l’étape suivante.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="univers">
+      <div class="shell experience">
+        <div class="experience-copy">
+          <p class="kicker">Au cœur de l’orbite</p>
+          <h2>Le vide ne reste jamais immobile.</h2>
+          <p>Ralentis une bille, tisse un lien, déclenche une fission. Récupère des bonus et choisis le bon instant : quelques secondes peuvent transformer une partie entière.</p>
+          <a class="button" href="support.html">En savoir plus <span class="button-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="experience-visual" role="img" aria-label="Illustration abstraite : une corde relie deux billes en orbite autour d’un trou noir">
+          <div class="field-ring"></div>
+          <div class="tether"></div>
+          <div class="singularity"></div>
+          <span class="visual-label">Gravité · tension · impulsion</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="closing">
+          <div>
+            <p class="kicker">Warp Pulse</p>
+            <h2>Prêt à défier l’orbite ?</h2>
+            <p>Une question ou besoin d’aide ? Écris-nous, on te répond.</p>
+          </div>
+          <a class="button button-primary" href="mailto:pascal.mourier@gmail.com">Contacter l’éditeur <span class="button-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>© 2026 Warp Pulse</span>
+    <div class="footer-links">
       <a href="support.html">Assistance</a>
       <a href="privacy.html">Confidentialité</a>
-      <a href="mailto:pascal.mourier@gmail.com">Contacter l’éditeur</a>
-    </nav>
-  </main>
+      <a href="mailto:pascal.mourier@gmail.com">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>
