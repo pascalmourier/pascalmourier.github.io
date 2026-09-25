@@ -118,6 +118,9 @@
     .feature-card.bonus-slow .feature-mark { border-color: rgba(189, 99, 255, .62); box-shadow: inset 0 0 10px rgba(189, 99, 255, .3), 0 0 20px rgba(189, 99, 255, .12); }
     .feature-card.bonus-magnet .feature-mark { border-color: rgba(255, 195, 71, .66); box-shadow: inset 0 0 10px rgba(255, 195, 71, .3), 0 0 20px rgba(255, 195, 71, .12); }
     .feature-card.bonus-seed .feature-mark { border-color: rgba(54, 156, 255, .68); box-shadow: inset 0 0 10px rgba(54, 156, 255, .3), 0 0 20px rgba(54, 156, 255, .13); }
+    .gameplay-showcase { width: min(100%, 1040px); margin: 32px auto 0; padding: 10px; border: 1px solid rgba(100, 162, 255, .23); border-radius: 20px; background: linear-gradient(145deg, rgba(22, 34, 72, .82), rgba(8, 12, 31, .9)); box-shadow: 0 24px 70px rgba(0, 0, 0, .32), 0 0 36px rgba(54, 156, 255, .07); }
+    .gameplay-showcase img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .gameplay-showcase figcaption { margin: 12px 8px 3px; color: #9baac7; font-size: .78rem; text-align: center; letter-spacing: .025em; }
     .closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 34px 38px; border: 1px solid rgba(54, 231, 242, .2); border-radius: 18px; background: linear-gradient(100deg, rgba(16, 44, 73, .62), rgba(36, 22, 70, .6)); }
     .closing p { margin: 5px 0 0; color: var(--muted); font-size: .88rem; }
     .closing h2 { font-size: clamp(1.55rem, 3vw, 2.2rem); }
@@ -238,6 +241,10 @@
             <p>Ce bonus rare fait apparaître de nouvelles billes sur le plateau quand tu commences à en manquer.</p>
           </article>
         </div>
+        <figure class="gameplay-showcase">
+          <img src="assets/gameplay-bonuses.png" alt="Capture d’écran de Warp Pulse : billes autour du trou noir central et compteurs de bonus sur le côté" loading="lazy" decoding="async">
+          <figcaption>Le plateau Warp Pulse en pleine partie.</figcaption>
+        </figure>
       </div>
     </section>
 
