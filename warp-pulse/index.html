@@ -121,6 +121,14 @@
     .gameplay-showcase { width: min(100%, 1040px); margin: 32px auto 0; padding: 10px; border: 1px solid rgba(100, 162, 255, .23); border-radius: 20px; background: linear-gradient(145deg, rgba(22, 34, 72, .82), rgba(8, 12, 31, .9)); box-shadow: 0 24px 70px rgba(0, 0, 0, .32), 0 0 36px rgba(54, 156, 255, .07); }
     .gameplay-showcase img { display: block; width: 100%; height: auto; border-radius: 12px; }
     .gameplay-showcase figcaption { margin: 12px 8px 3px; color: #9baac7; font-size: .78rem; text-align: center; letter-spacing: .025em; }
+    .gravity-guide { display: grid; width: min(100%, 1040px); grid-template-columns: minmax(190px, .42fr) 1fr; align-items: center; gap: 28px; margin: 18px auto 0; padding: 24px; border: 1px solid rgba(148, 191, 255, .17); border-radius: 18px; background: linear-gradient(135deg, rgba(15, 27, 58, .84), rgba(12, 15, 39, .86)); }
+    .gravity-meter { padding: 17px; border: 1px solid rgba(148, 191, 255, .13); border-radius: 13px; background: rgba(5, 9, 24, .48); }
+    .gravity-meter-label { color: #c1cee3; font-size: .68rem; font-weight: 750; letter-spacing: .17em; }
+    .gravity-meter-track { height: 7px; margin: 13px 0 10px; border-radius: 99px; background: linear-gradient(90deg, #78ef9b 0%, #d9e96b 48%, #ff6c77 100%); box-shadow: 0 0 16px rgba(88, 213, 172, .17); }
+    .gravity-meter-caption { color: #8191b0; font-size: .68rem; }
+    .gravity-guide-copy .kicker { margin-bottom: 7px; }
+    .gravity-guide-copy h3 { margin: 0; font-size: clamp(1.18rem, 2.4vw, 1.55rem); line-height: 1.25; }
+    .gravity-guide-copy p:last-child { margin: 9px 0 0; color: var(--muted); font-size: .87rem; }
     .closing { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 34px 38px; border: 1px solid rgba(54, 231, 242, .2); border-radius: 18px; background: linear-gradient(100deg, rgba(16, 44, 73, .62), rgba(36, 22, 70, .6)); }
     .closing p { margin: 5px 0 0; color: var(--muted); font-size: .88rem; }
     .closing h2 { font-size: clamp(1.55rem, 3vw, 2.2rem); }
@@ -143,6 +151,7 @@
       .feature-grid { grid-template-columns: 1fr; }
       .feature-card { min-height: 205px; }
       .feature-card h3 { margin-top: 29px; }
+      .gravity-guide { grid-template-columns: 1fr; gap: 17px; padding: 18px; }
       .closing { align-items: flex-start; flex-direction: column; padding: 28px; }
       footer { align-items: flex-start; flex-direction: column; }
     }
@@ -245,6 +254,18 @@
           <img src="assets/gameplay-bonuses.png" alt="Capture d’écran de Warp Pulse : billes autour du trou noir central et compteurs de bonus sur le côté" loading="lazy" decoding="async">
           <figcaption>Le plateau Warp Pulse en pleine partie.</figcaption>
         </figure>
+        <aside class="gravity-guide" aria-labelledby="gravity-guide-title">
+          <div class="gravity-meter" aria-hidden="true">
+            <span class="gravity-meter-label">GRAVITÉ</span>
+            <div class="gravity-meter-track"></div>
+            <span class="gravity-meter-caption">En bas de l’écran · au centre</span>
+          </div>
+          <div class="gravity-guide-copy">
+            <p class="kicker">Garde un œil sur la gravité</p>
+            <h3 id="gravity-guide-title">Mesure l’attraction du trou noir.</h3>
+            <p>Centrée en bas de l’écran, la jauge indique en permanence la force d’attraction du trou noir. En reliant les billes puis en les électrocutant avec une corde, tu peux réduire légèrement la gravité ; l’explosion de la bombe centrale peut aussi l’atténuer. Un bon moyen de garder la difficulté sous contrôle.</p>
+          </div>
+        </aside>
       </div>
     </section>
 
