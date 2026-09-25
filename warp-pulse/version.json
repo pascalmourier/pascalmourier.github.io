@@ -1,9 +1,9 @@
 {
   "latestVersion": "0.1",
-  "latestBuild": 11,
+  "latestBuild": 12,
   "minimumSupportedVersion": "0.1",
   "minimumSupportedBuild": 11,
-  "releaseNotes": "Build 11 de Warp Pulse.",
+  "releaseNotes": "Build 12 de Warp Pulse.",
   "appStoreURL": null,
-  "publishedAt": "2026-09-24"
+  "publishedAt": "2026-09-25"
 }
