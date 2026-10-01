@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050608">
+  <meta name="description" content="DicoDay est un jeu d'enquête autour des mots français. Découvrez le projet, l'assistance et sa politique de confidentialité.">
+  <title>DicoDay — Enquête autour d’un mot</title>
+  <link rel="icon" type="image/png" href="assets/dicoday-icon.png">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050608;
+      --panel: #11151d;
+      --panel-2: #171d27;
+      --ink: #fff9e8;
+      --muted: #bec5d0;
+      --line: #293342;
+      --blue: #28b9f3;
+      --pink: #ff2484;
+      --orange: #ff6a31;
+      --gold: #ffc319;
+      --green: #8ab351;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 50% -18%, #182537 0, var(--bg) 55rem);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: #84ddff; text-underline-offset: .2em; }
+    a:hover { color: #fff; }
+    .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    header { padding: 1.25rem 0; border-bottom: 1px solid #ffffff16; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .02em; }
+    .brand img { width: 42px; height: 42px; border-radius: 11px; }
+    .nav-links { display: flex; gap: clamp(.8rem, 3vw, 1.7rem); flex-wrap: wrap; }
+    .nav-links a { color: var(--muted); font-size: .92rem; text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+    .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 4rem; text-align: center; }
+    .hero-icon { display: block; width: min(220px, 48vw); height: auto; margin: 0 auto 1.5rem; border-radius: 26%; box-shadow: 0 16px 60px #0009; }
+    .eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; }
+    h1 { margin: .5rem 0 1rem; font-size: clamp(2.2rem, 7vw, 4.8rem); line-height: 1.04; letter-spacing: -.045em; }
+    .hero p { max-width: 660px; margin: 0 auto; color: var(--muted); font-size: clamp(1.05rem, 2.4vw, 1.25rem); }
+    .beta { display: inline-flex; margin-top: 1.6rem; padding: .4rem .8rem; border: 1px solid #28b9f366; border-radius: 99px; color: #b6eaff; background: #28b9f314; font-size: .85rem; font-weight: 700; }
+    main { padding-bottom: 4rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0 auto 4rem; }
+    .card, .section { border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg, #151a23, #0d1016); }
+    .card { padding: 1.4rem; }
+    .card:nth-child(1) { border-top: 3px solid var(--orange); }
+    .card:nth-child(2) { border-top: 3px solid var(--gold); }
+    .card:nth-child(3) { border-top: 3px solid var(--blue); }
+    h2 { margin: 0 0 .9rem; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.025em; }
+    h3 { margin: 0 0 .45rem; font-size: 1.08rem; }
+    .card p, .section p, .section li { color: var(--muted); }
+    .section { padding: clamp(1.3rem, 4vw, 2.5rem); margin: 1.2rem 0; scroll-margin-top: 1rem; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 1.2rem; }
+    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding: 1.2rem 1.3rem; border-radius: 15px; background: var(--panel-2); }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: .7rem 1rem; border-radius: 11px; background: #0c2635; border: 1px solid #28b9f377; color: #b9edff; font-weight: 750; text-decoration: none; white-space: nowrap; }
+    .button:hover { background: #12364a; }
+    .small { font-size: .9rem; }
+    footer { padding: 1.7rem 0 2.5rem; border-top: 1px solid #ffffff16; color: #8d97a5; font-size: .86rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .nav { align-items: flex-start; flex-direction: column; } .nav-links { gap: .9rem; } .contact-box { align-items: flex-start; flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#accueil"><img src="assets/dicoday-icon.png" alt=""><span>DicoDay</span></a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#jeu">Le jeu</a>
+        <a href="#assistance">Assistance</a>
+        <a href="#confidentialite">Confidentialité</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="accueil">
+    <section class="hero" aria-labelledby="titre">
+      <img class="hero-icon" src="assets/dicoday-icon.png" alt="Logo DicoDay, les mots DICO et DAY empilés sur fond noir">
+      <div class="eyebrow">Le jeu des mots à découvrir</div>
+      <h1 id="titre">Une enquête.<br>Un mot à trouver.</h1>
+      <p>Interrogez les lettres, cherchez leur place et tentez de découvrir le mot caché avant la fin de la partie.</p>
+      <span class="beta">Version bêta TestFlight</span>
+    </section>
+
+    <section class="grid" id="jeu" aria-label="Comment jouer">
+      <article class="card">
+        <h3>1. Enquêtez</h3>
+        <p>Testez une lettre pour savoir combien de fois elle apparaît dans le mot.</p>
+      </article>
+      <article class="card">
+        <h3>2. Placez vos indices</h3>
+        <p>Essayez de positionner les lettres découvertes et affinez votre déduction.</p>
+      </article>
+      <article class="card">
+        <h3>3. Trouvez le mot</h3>
+        <p>Utilisez vos actions et vos tentatives avec stratégie pour résoudre l’énigme.</p>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="beta-title">
+      <h2 id="beta-title">À propos de la bêta</h2>
+      <p>DicoDay est en cours de développement. Dans cette version de test, chaque partie choisit un mot dans un panel limité de mots français. Le tirage est aléatoire : il ne s’agit pas encore d’un mot du jour commun à tous les joueurs.</p>
+      <p>Les retours des testeurs nous aident à améliorer les règles et l’expérience de jeu.</p>
+    </section>
+
+    <section class="section" id="assistance" aria-labelledby="support-title">
+      <h2 id="support-title">Assistance et retours</h2>
+      <div class="contact-box">
+        <div>
+          <h3>Un problème ou une suggestion ?</h3>
+          <p class="small">Pour signaler un souci ou partager une idée, écris-nous à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">pascal.mourier@gmail.com</a> ou <a href="https://github.com/pascalmourier/dicoday/issues">ouvre un ticket GitHub</a>. Évite d’inclure des informations personnelles dans un message public.</p>
+        </div>
+        <a class="button" href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">Écrire à l’assistance</a>
+      </div>
+    </section>
+
+    <section class="section" id="confidentialite" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">Politique de confidentialité</h2>
+      <p><strong>Dernière mise à jour : 1 octobre 2026.</strong> Cette politique décrit la version bêta TestFlight de DicoDay et le présent site. DicoDay est un jeu développé et maintenu par Pascal Mourier.</p>
+      <h3>Données traitées par le jeu</h3>
+      <p>Le jeu fonctionne localement sur l’appareil. Cette version ne demande pas de compte et n’intègre pas de publicité, d’outil d’analyse ou de suivi. Elle n’envoie pas de données de jeu à un serveur. La partie en cours n’est pas enregistrée dans un compte ou synchronisée.</p>
+      <h3>TestFlight et Apple</h3>
+      <p>La distribution bêta passe par TestFlight. Apple traite les informations nécessaires à son service, notamment l’invitation, l’installation et les retours ou diagnostics transmis par les testeurs, conformément à la <a href="https://www.apple.com/legal/privacy/">politique de confidentialité d’Apple</a>. Ces traitements relèvent d’Apple et de ses services.</p>
+      <h3>Hébergement du site</h3>
+      <p>Cette page est hébergée par GitHub Pages. GitHub peut traiter des données techniques de connexion pour fournir et sécuriser l’hébergement, selon la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">politique de confidentialité de GitHub</a>. Cette page n’ajoute pas de cookie publicitaire ni d’outil d’analyse.</p>
+      <h3>Questions relatives à la confidentialité</h3>
+      <p>Pour toute question concernant cette politique, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>. Les demandes envoyées par e-mail restent privées entre toi et le destinataire.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 DicoDay — Version bêta</span>
+      <a href="#confidentialite">Politique de confidentialité</a>
+    </div>
+  </footer>
+</body>
+</html>
