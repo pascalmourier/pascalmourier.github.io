@@ -110,8 +110,7 @@
 
     <section class="section" aria-labelledby="beta-title">
       <h2 id="beta-title">À propos de la bêta</h2>
-      <p>DicoDay est en cours de développement. Dans cette version de test, chaque partie choisit un mot dans un panel limité de mots français. Le tirage est aléatoire : il ne s’agit pas encore d’un mot du jour commun à tous les joueurs.</p>
-      <p>Les retours des testeurs nous aident à améliorer les règles et l’expérience de jeu.</p>
+      <p>DicoDay est en cours de développement. Le mot officiel du jour est commun aux joueurs et tiré d’un panel bêta limité. Les parties d’entraînement utilisent un pool local distinct. Les retours des testeurs nous aident à améliorer les règles et l’expérience de jeu.</p>
     </section>
 
     <section class="section" id="assistance" aria-labelledby="support-title">
@@ -127,15 +126,38 @@
 
     <section class="section" id="confidentialite" aria-labelledby="privacy-title">
       <h2 id="privacy-title">Politique de confidentialité</h2>
-      <p><strong>Dernière mise à jour : 1 octobre 2026.</strong> Cette politique décrit la version bêta TestFlight de DicoDay et le présent site. DicoDay est un jeu développé et maintenu par Pascal Mourier.</p>
-      <h3>Données traitées par le jeu</h3>
-      <p>Le jeu fonctionne localement sur l’appareil. Cette version ne demande pas de compte et n’intègre pas de publicité, d’outil d’analyse ou de suivi. Elle n’envoie pas de données de jeu à un serveur. La partie en cours n’est pas enregistrée dans un compte ou synchronisée.</p>
-      <h3>TestFlight et Apple</h3>
-      <p>La distribution bêta passe par TestFlight. Apple traite les informations nécessaires à son service, notamment l’invitation, l’installation et les retours ou diagnostics transmis par les testeurs, conformément à la <a href="https://www.apple.com/legal/privacy/">politique de confidentialité d’Apple</a>. Ces traitements relèvent d’Apple et de ses services.</p>
-      <h3>Hébergement du site</h3>
+      <p><strong>Dernière mise à jour : 5 octobre 2026.</strong> Cette politique décrit la bêta TestFlight de DicoDay et le présent site. DicoDay est développé et exploité par Pascal Mourier, responsable du traitement. Contact : <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>.</p>
+
+      <h3>Jouer sans compte</h3>
+      <p>Tu peux jouer en mode invité sans utiliser Game Center ni créer de compte DicoDay. Dans ce mode, DicoDay n’enregistre pas tes parties ni tes scores sur son serveur. L’app télécharge toutefois le mot officiel du jour depuis le serveur DicoDay ; cette requête ne contient pas ton identifiant Game Center. La date du mot terminé peut rester temporairement sur ton appareil pour éviter de te proposer à nouveau le même défi le jour même.</p>
+
+      <h3>Profil Game Center, scores et classements</h3>
+      <p>Lorsque tu joues avec Game Center actif, DicoDay crée automatiquement un profil pour enregistrer ta partie officielle et afficher tes statistiques. L’app transmet au serveur une preuve Game Center signée, l’identifiant technique Game Center nécessaire à sa vérification et ton nom d’affichage Game Center.</p>
+      <p>Le serveur ne conserve pas l’identifiant Game Center brut : il en calcule une empreinte pseudonymisée, associée à un identifiant interne DicoDay. Le nom d’affichage Game Center est enregistré séparément et peut changer. À chaque connexion Game Center, DicoDay actualise ce nom. Il peut être visible avec les scores officiels dans les classements affichés aux autres joueurs de DicoDay.</p>
+      <p>La partie en cours reste sur ton appareil : elle n’est ni enregistrée sur le serveur ni synchronisée. À la fin d’une partie officielle, si tu es connecté à un compte DicoDay et que l’envoi réussit, le serveur conserve la date, le résultat (victoire ou défaite), le score, la durée, les actions et essais restants ainsi que la version des règles. Ces données servent à afficher ta dernière partie, tes records et tes statistiques hebdomadaires et mensuelles. Si tu joues sans sauvegarde ou viens de supprimer ton profil, l’app mémorise uniquement sur ton appareil la date du mot du jour terminé, pour ne pas te le reproposer le même jour ; ce marqueur n’est pas envoyé au serveur et expire lors d’une prochaine ouverture après le changement de journée. Les parties d’entraînement ne sont pas envoyées au serveur.</p>
+      <h3>Inscription et connexion par e-mail</h3>
+      <p>Si tu choisis l’inscription ou la connexion par e-mail, DicoDay utilise l’adresse que tu saisis pour t’envoyer un code numérique à usage unique et retrouver ton compte. Le code expire après 10 minutes. L’adresse n’est pas affichée aux autres joueurs ; une empreinte secrète de l’adresse est conservée dans le profil pour reconnaître le compte. Pour une demande non terminée, le serveur conserve temporairement l’adresse, le pseudo et l’empreinte du code jusqu’à l’expiration du défi ; les défis expirés sont supprimés lors du nettoyage automatique. Des empreintes temporaires de l’adresse et de l’adresse IP servent à limiter les demandes abusives et sont supprimées sous 24 heures. Le pseudo est vérifié après la validation du code et peut être visible avec tes scores officiels dans les classements. Le serveur DicoDay prépare et envoie le message depuis son propre service SMTP ; les journaux techniques d’envoi peuvent contenir des métadonnées de remise, dont l’adresse destinataire, et suivent la rotation automatique des journaux du serveur. Le fournisseur de ta boîte mail traite le message à sa réception selon ses propres règles.</p>
+
+      <h3>Finalités et bases de traitement</h3>
+      <ul>
+        <li>Créer et gérer le profil, vérifier l’adresse e-mail si tu choisis ce mode, enregistrer la partie officielle et fournir les statistiques et classements : exécution du service de jeu et de classement que tu utilises.</li>
+        <li>Vérifier la preuve Game Center, empêcher sa réutilisation et protéger le service : intérêt légitime à sécuriser DicoDay et à assurer l’intégrité des scores.</li>
+      </ul>
+      <p>DicoDay n’utilise pas ces données pour la publicité, le suivi entre apps ou sites, ni la vente de données. L’adresse e-mail est facultative et demandée uniquement si tu choisis ce mode de compte. DicoDay ne demande pas ton nom civil, ton numéro de téléphone ou ta localisation.</p>
+
+      <h3>Destinataires et hébergement</h3>
+      <p>Les données de compte et de scores sont hébergées sur un VPS OVHcloud situé à Francfort, en Allemagne. Des copies de sauvegarde sont transférées par SSH vers un NAS privé situé en France. L’accès à ces copies est restreint au compte d’administration DicoDay. Les dumps PostgreSQL et leurs copies sur le NAS sont purgés après 14 jours au maximum. OVHcloud indique que son backup automatisé permet une restauration sur 7 jours ; ces points de restauration suivent une rotation distincte des dumps DicoDay.</p>
+      <p>Game Center est un service d’Apple, soumis à la <a href="https://www.apple.com/legal/privacy/">politique de confidentialité d’Apple</a>. La distribution bêta utilise également TestFlight ; Apple traite les données nécessaires à ce service, notamment les invitations, installations, retours et diagnostics, selon ses propres règles.</p>
+
+      <h3>Durée de conservation et suppression du compte</h3>
+      <p>Le profil, l’empreinte de l’adresse e-mail si tu as choisi ce mode, le nom d’affichage, les résultats officiels et les statistiques restent dans la base active jusqu’à la suppression du compte ; les profils inactifs ne sont pas supprimés automatiquement pour le moment. Les demandes de vérification non terminées expirent après 10 minutes. Tu peux supprimer le compte DicoDay et les données associées depuis l’écran « Confidentialité et compte ». Si l’option n’apparaît pas ou si la suppression échoue, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20suppression%20du%20compte">pascal.mourier@gmail.com</a>. La suppression de ton profil DicoDay ne supprime pas ton compte Apple ou Game Center. Les sauvegardes DicoDay expirent au plus tard après 14 jours ; les sauvegardes automatisées OVHcloud sont conservées dans la fenêtre de restauration de 7 jours indiquée par OVHcloud.</p>
+      <p>Les empreintes temporaires de preuve Game Center servent à empêcher les rejeux. Leur validité est limitée à 10 minutes ; les empreintes expirées sont nettoyées lors du traitement d’une nouvelle connexion Game Center.</p>
+
+      <h3>Tes droits</h3>
+      <p>Tu peux demander l’accès à tes données, leur rectification, leur effacement ou la limitation du traitement, et exercer ton droit d’opposition ou de portabilité lorsque les conditions légales sont réunies. Tu peux aussi saisir la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>. Pour nous contacter, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>. Pour corriger le nom d’affichage, modifie-le dans Game Center ; DicoDay le mettra à jour lors de ta prochaine connexion.</p>
+
+      <h3>Hébergement de cette page</h3>
       <p>Cette page est hébergée par GitHub Pages. GitHub peut traiter des données techniques de connexion pour fournir et sécuriser l’hébergement, selon la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">politique de confidentialité de GitHub</a>. Cette page n’ajoute pas de cookie publicitaire ni d’outil d’analyse.</p>
-      <h3>Questions relatives à la confidentialité</h3>
-      <p>Pour toute question concernant cette politique, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>. Les demandes envoyées par e-mail restent privées entre toi et le destinataire.</p>
     </section>
   </main>
 
