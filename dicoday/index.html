@@ -4,168 +4,97 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050608">
-  <meta name="description" content="DicoDay est un jeu d'enquête autour des mots français. Découvrez le projet, l'assistance et sa politique de confidentialité.">
-  <title>DicoDay — Enquête autour d’un mot</title>
+  <meta name="description" content="DicoDay : découvrez le mot français du jour, entraînez-vous, suivez vos scores et consultez les classements.">
+  <title>DicoDay — Le mot du jour</title>
   <link rel="icon" type="image/png" href="assets/dicoday-icon.png">
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #050608;
-      --panel: #11151d;
-      --panel-2: #171d27;
-      --ink: #fff9e8;
-      --muted: #bec5d0;
-      --line: #293342;
-      --blue: #28b9f3;
-      --pink: #ff2484;
-      --orange: #ff6a31;
-      --gold: #ffc319;
-      --green: #8ab351;
-      --max: 1080px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: radial-gradient(ellipse at 50% -18%, #182537 0, var(--bg) 55rem);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-    }
-    a { color: #84ddff; text-underline-offset: .2em; }
-    a:hover { color: #fff; }
-    .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
-    header { padding: 1.25rem 0; border-bottom: 1px solid #ffffff16; }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: .02em; }
-    .brand img { width: 42px; height: 42px; border-radius: 11px; }
-    .nav-links { display: flex; gap: clamp(.8rem, 3vw, 1.7rem); flex-wrap: wrap; }
-    .nav-links a { color: var(--muted); font-size: .92rem; text-decoration: none; }
-    .nav-links a:hover { color: var(--ink); }
-    .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 4rem; text-align: center; }
-    .hero-icon { display: block; width: min(220px, 48vw); height: auto; margin: 0 auto 1.5rem; border-radius: 26%; box-shadow: 0 16px 60px #0009; }
-    .eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; }
-    h1 { margin: .5rem 0 1rem; font-size: clamp(2.2rem, 7vw, 4.8rem); line-height: 1.04; letter-spacing: -.045em; }
-    .hero p { max-width: 660px; margin: 0 auto; color: var(--muted); font-size: clamp(1.05rem, 2.4vw, 1.25rem); }
-    .beta { display: inline-flex; margin-top: 1.6rem; padding: .4rem .8rem; border: 1px solid #28b9f366; border-radius: 99px; color: #b6eaff; background: #28b9f314; font-size: .85rem; font-weight: 700; }
-    main { padding-bottom: 4rem; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0 auto 4rem; }
-    .card, .section { border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(145deg, #151a23, #0d1016); }
-    .card { padding: 1.4rem; }
-    .card:nth-child(1) { border-top: 3px solid var(--orange); }
-    .card:nth-child(2) { border-top: 3px solid var(--gold); }
-    .card:nth-child(3) { border-top: 3px solid var(--blue); }
-    h2 { margin: 0 0 .9rem; font-size: clamp(1.45rem, 3vw, 2rem); letter-spacing: -.025em; }
-    h3 { margin: 0 0 .45rem; font-size: 1.08rem; }
-    .card p, .section p, .section li { color: var(--muted); }
-    .section { padding: clamp(1.3rem, 4vw, 2.5rem); margin: 1.2rem 0; scroll-margin-top: 1rem; }
-    .section p:last-child { margin-bottom: 0; }
-    .section ul { padding-left: 1.2rem; }
-    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding: 1.2rem 1.3rem; border-radius: 15px; background: var(--panel-2); }
-    .button { display: inline-flex; align-items: center; justify-content: center; padding: .7rem 1rem; border-radius: 11px; background: #0c2635; border: 1px solid #28b9f377; color: #b9edff; font-weight: 750; text-decoration: none; white-space: nowrap; }
-    .button:hover { background: #12364a; }
-    .small { font-size: .9rem; }
-    footer { padding: 1.7rem 0 2.5rem; border-top: 1px solid #ffffff16; color: #8d97a5; font-size: .86rem; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-    @media (max-width: 520px) { .nav { align-items: flex-start; flex-direction: column; } .nav-links { gap: .9rem; } .contact-box { align-items: flex-start; flex-direction: column; } }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    :root { color-scheme: dark; --bg:#050608; --panel:#11151d; --panel-2:#171d27; --ink:#fff9e8; --muted:#bec5d0; --line:#293342; --blue:#28b9f3; --orange:#ff6a31; --gold:#ffc319; --max:1080px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:radial-gradient(ellipse at 50% -18%, #182537 0, var(--bg) 55rem); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.65; }
+    a { color:#84ddff; text-underline-offset:.2em; } a:hover { color:#fff; }
+    .wrap { width:min(var(--max),calc(100% - 2rem)); margin:0 auto; }
+    header { padding:1.25rem 0; border-bottom:1px solid #ffffff16; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .brand { display:inline-flex; align-items:center; gap:.7rem; color:var(--ink); text-decoration:none; font-weight:800; letter-spacing:.02em; }
+    .brand img { width:42px; height:42px; border-radius:11px; }
+    .nav-links { display:flex; gap:clamp(.8rem,3vw,1.7rem); flex-wrap:wrap; }
+    .nav-links a { color:var(--muted); font-size:.92rem; text-decoration:none; }
+    .hero { padding:clamp(3.5rem,9vw,7rem) 0 4rem; text-align:center; }
+    .hero-icon { display:block; width:min(220px,48vw); height:auto; margin:0 auto 1.5rem; border-radius:26%; box-shadow:0 16px 60px #0009; }
+    .eyebrow { color:var(--blue); text-transform:uppercase; letter-spacing:.18em; font-size:.78rem; font-weight:800; }
+    h1 { margin:.5rem 0 1rem; font-size:clamp(2.2rem,7vw,4.8rem); line-height:1.04; letter-spacing:-.045em; }
+    .hero p { max-width:660px; margin:0 auto; color:var(--muted); font-size:clamp(1.05rem,2.4vw,1.25rem); }
+    .beta { display:inline-flex; margin-top:1.6rem; padding:.4rem .8rem; border:1px solid #28b9f366; border-radius:99px; color:#b6eaff; background:#28b9f314; font-size:.85rem; font-weight:700; }
+    main { padding-bottom:4rem; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:0 auto 4rem; }
+    .card,.section { border:1px solid var(--line); border-radius:20px; background:linear-gradient(145deg,#151a23,#0d1016); }
+    .card { padding:1.4rem; } .card:nth-child(1){border-top:3px solid var(--orange)} .card:nth-child(2){border-top:3px solid var(--gold)} .card:nth-child(3){border-top:3px solid var(--blue)}
+    h2 { margin:0 0 .9rem; font-size:clamp(1.45rem,3vw,2rem); letter-spacing:-.025em; } h3 { margin:0 0 .45rem; font-size:1.08rem; }
+    .card p,.section p,.section li { color:var(--muted); }
+    .section { padding:clamp(1.3rem,4vw,2.5rem); margin:1.2rem 0; scroll-margin-top:1rem; } .section p:last-child{margin-bottom:0} .section ul{padding-left:1.2rem}
+    .contact-box { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; padding:1.2rem 1.3rem; border-radius:15px; background:var(--panel-2); }
+    .button { display:inline-flex; align-items:center; justify-content:center; padding:.7rem 1rem; border-radius:11px; background:#0c2635; border:1px solid #28b9f377; color:#b9edff; font-weight:750; text-decoration:none; white-space:nowrap; }
+    .small { font-size:.9rem; }
+    footer { padding:1.7rem 0 2.5rem; border-top:1px solid #ffffff16; color:#8d97a5; font-size:.86rem; }
+    footer .wrap { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+    @media(max-width:760px){.grid{grid-template-columns:1fr}} @media(max-width:520px){.nav{align-items:flex-start;flex-direction:column}.nav-links{gap:.9rem}.contact-box{align-items:flex-start;flex-direction:column}} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#accueil"><img src="assets/dicoday-icon.png" alt=""><span>DicoDay</span></a>
-      <nav class="nav-links" aria-label="Navigation principale">
-        <a href="#jeu">Le jeu</a>
-        <a href="#assistance">Assistance</a>
-        <a href="#confidentialite">Confidentialité</a>
-      </nav>
-    </div>
-  </header>
-
+  <header><div class="wrap nav">
+    <a class="brand" href="#accueil"><img src="assets/dicoday-icon.png" alt=""><span>DicoDay</span></a>
+    <nav class="nav-links" aria-label="Navigation principale"><a href="#jeu">Le jeu</a><a href="#assistance">Assistance</a><a href="#confidentialite">Confidentialité</a></nav>
+  </div></header>
   <main class="wrap" id="accueil">
     <section class="hero" aria-labelledby="titre">
       <img class="hero-icon" src="assets/dicoday-icon.png" alt="Logo DicoDay, les mots DICO et DAY empilés sur fond noir">
-      <div class="eyebrow">Le jeu des mots à découvrir</div>
-      <h1 id="titre">Une enquête.<br>Un mot à trouver.</h1>
-      <p>Interrogez les lettres, cherchez leur place et tentez de découvrir le mot caché avant la fin de la partie.</p>
+      <div class="eyebrow">Un mot français chaque jour</div>
+      <h1 id="titre">Le même défi.<br>À toi de trouver le mot.</h1>
+      <p>Déduis les lettres et leur position avant d’épuiser tes actions et tes essais. Puis entraîne-toi avec d’autres mots, sans inscrire ces parties aux classements.</p>
       <span class="beta">Version bêta TestFlight</span>
     </section>
-
     <section class="grid" id="jeu" aria-label="Comment jouer">
-      <article class="card">
-        <h3>1. Enquêtez</h3>
-        <p>Testez une lettre pour savoir combien de fois elle apparaît dans le mot.</p>
-      </article>
-      <article class="card">
-        <h3>2. Placez vos indices</h3>
-        <p>Essayez de positionner les lettres découvertes et affinez votre déduction.</p>
-      </article>
-      <article class="card">
-        <h3>3. Trouvez le mot</h3>
-        <p>Utilisez vos actions et vos tentatives avec stratégie pour résoudre l’énigme.</p>
-      </article>
+      <article class="card"><h3>1. Interroge les lettres</h3><p>Propose une lettre et découvre combien de fois elle apparaît dans le mot.</p></article>
+      <article class="card"><h3>2. Déduis leur place</h3><p>Place les lettres connues dans la grille pour préciser tes indices.</p></article>
+      <article class="card"><h3>3. Trouve le mot</h3><p>Gère tes actions et tes essais pour résoudre le défi quotidien.</p></article>
     </section>
-
-    <section class="section" aria-labelledby="beta-title">
-      <h2 id="beta-title">À propos de la bêta</h2>
-      <p>DicoDay est en cours de développement. Le mot officiel du jour est commun aux joueurs et tiré d’un panel bêta limité. Les parties d’entraînement utilisent un pool local distinct. Les retours des testeurs nous aident à améliorer les règles et l’expérience de jeu.</p>
+    <section class="section" aria-labelledby="daily-title">
+      <h2 id="daily-title">Le défi quotidien et l’entraînement</h2>
+      <p>Chaque jour, le même mot français est proposé à tous les joueurs. Tu peux jouer en invité ; pour conserver une partie officielle, retrouver tes scores et apparaître dans les classements, connecte un profil DicoDay ou Game Center. L’app présente tes dernières parties, tes records et les classements de la semaine et du mois. Le mode entraînement permet de jouer à d’autres mots ; ces parties restent sur l’appareil et ne comptent pas dans les classements. DicoDay est actuellement distribué en bêta TestFlight.</p>
     </section>
-
     <section class="section" id="assistance" aria-labelledby="support-title">
       <h2 id="support-title">Assistance et retours</h2>
-      <div class="contact-box">
-        <div>
-          <h3>Un problème ou une suggestion ?</h3>
-          <p class="small">Pour signaler un souci ou partager une idée, écris-nous à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">pascal.mourier@gmail.com</a>.</p>
-        </div>
-        <a class="button" href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">Écrire à l’assistance</a>
-      </div>
+      <div class="contact-box"><div><h3>Un problème ou une suggestion ?</h3><p class="small">Pour signaler un souci ou partager une idée, écris-nous à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">pascal.mourier@gmail.com</a>.</p></div><a class="button" href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20assistance">Écrire à l’assistance</a></div>
     </section>
-
     <section class="section" id="confidentialite" aria-labelledby="privacy-title">
       <h2 id="privacy-title">Politique de confidentialité</h2>
-      <p><strong>Dernière mise à jour : 5 octobre 2026.</strong> Cette politique décrit la bêta TestFlight de DicoDay et le présent site. DicoDay est développé et exploité par Pascal Mourier, responsable du traitement. Contact : <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>.</p>
-
+      <p><strong>Dernière mise à jour : 9 octobre 2026.</strong> Cette politique décrit la bêta TestFlight de DicoDay et le présent site. DicoDay s’adresse au grand public et n’est pas conçu spécifiquement pour les enfants de moins de 13 ans. DicoDay est développé et exploité par Pascal Mourier, responsable du traitement. Contact : <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>.</p>
       <h3>Jouer sans compte</h3>
       <p>Tu peux jouer en mode invité sans utiliser Game Center ni créer de compte DicoDay. Dans ce mode, DicoDay n’enregistre pas tes parties ni tes scores sur son serveur. L’app télécharge toutefois le mot officiel du jour depuis le serveur DicoDay ; cette requête ne contient pas ton identifiant Game Center. La date du mot terminé peut rester temporairement sur ton appareil pour éviter de te proposer à nouveau le même défi le jour même.</p>
-
       <h3>Profil Game Center, scores et classements</h3>
       <p>Lorsque tu joues avec Game Center actif, DicoDay crée automatiquement un profil pour enregistrer ta partie officielle et afficher tes statistiques. L’app transmet au serveur une preuve Game Center signée, l’identifiant technique Game Center nécessaire à sa vérification et ton nom d’affichage Game Center.</p>
-      <p>Le serveur ne conserve pas l’identifiant Game Center brut : il en calcule une empreinte pseudonymisée, associée à un identifiant interne DicoDay. Le nom d’affichage Game Center est enregistré séparément et peut changer. À chaque connexion Game Center, DicoDay actualise ce nom. Il peut être visible avec les scores officiels dans les classements affichés aux autres joueurs de DicoDay.</p>
-      <p>La partie en cours reste sur ton appareil : elle n’est ni enregistrée sur le serveur ni synchronisée. À la fin d’une partie officielle, si tu es connecté à un compte DicoDay et que l’envoi réussit, le serveur conserve la date, le résultat (victoire ou défaite), le score, la durée, les actions et essais restants ainsi que la version des règles. Ces données servent à afficher ta dernière partie, tes records et tes statistiques hebdomadaires et mensuelles. Si tu joues sans sauvegarde ou viens de supprimer ton profil, l’app mémorise uniquement sur ton appareil la date du mot du jour terminé, pour ne pas te le reproposer le même jour ; ce marqueur n’est pas envoyé au serveur et expire lors d’une prochaine ouverture après le changement de journée. Les parties d’entraînement ne sont pas envoyées au serveur.</p>
+      <p>Le serveur ne conserve pas l’identifiant Game Center brut : il en calcule une empreinte pseudonymisée, associée à un identifiant interne DicoDay. Le nom d’affichage Game Center est enregistré séparément et peut changer. À chaque connexion Game Center, DicoDay actualise ce nom. Il peut être visible avec les scores officiels dans les classements affichés aux autres joueurs.</p>
+      <p>La partie en cours reste sur ton appareil. À la fin d’une partie officielle, si tu es connecté et que l’envoi réussit, le serveur conserve la date, le résultat, le score, la durée, les actions et essais restants ainsi que la version des règles. Ces données servent à afficher ta dernière partie, tes records et tes statistiques hebdomadaires et mensuelles. Si tu joues sans sauvegarde, la date du mot quotidien terminé peut rester localement pour éviter de te reproposer le défi le même jour. Les parties d’entraînement ne sont pas envoyées au serveur.</p>
       <h3>Inscription et connexion par e-mail</h3>
-      <p>Si tu choisis l’inscription ou la connexion par e-mail, DicoDay utilise l’adresse que tu saisis pour t’envoyer un code numérique à usage unique et retrouver ton compte. Le code expire après 10 minutes. L’adresse n’est pas affichée aux autres joueurs ; une empreinte secrète de l’adresse est conservée dans le profil pour reconnaître le compte. Pour une demande non terminée, le serveur conserve temporairement l’adresse, le pseudo et l’empreinte du code jusqu’à l’expiration du défi ; les défis expirés sont supprimés lors du nettoyage automatique. Des empreintes temporaires de l’adresse et de l’adresse IP servent à limiter les demandes abusives et sont supprimées sous 24 heures. Le pseudo est vérifié après la validation du code et peut être visible avec tes scores officiels dans les classements. Le serveur DicoDay prépare et envoie le message depuis son propre service SMTP ; les journaux techniques d’envoi peuvent contenir des métadonnées de remise, dont l’adresse destinataire, et suivent la rotation automatique des journaux du serveur. Le fournisseur de ta boîte mail traite le message à sa réception selon ses propres règles.</p>
-
+      <p>Si tu choisis l’inscription ou la connexion par e-mail, DicoDay utilise l’adresse saisie pour t’envoyer un code à usage unique et retrouver ton compte. Le code expire après 10 minutes. L’adresse n’est pas affichée aux autres joueurs ; une empreinte de l’adresse est conservée dans le profil. Pour une demande inachevée, le serveur conserve temporairement l’adresse, le pseudo et l’empreinte du code jusqu’à l’expiration. Des empreintes temporaires de l’adresse et de l’adresse IP servent à limiter les demandes abusives et sont supprimées sous 24 heures. Le pseudo validé peut apparaître dans les classements. Le serveur envoie le message depuis son propre service SMTP ; les journaux techniques d’envoi suivent la rotation des journaux du serveur. Le fournisseur de ta boîte mail traite le message à sa réception selon ses propres règles.</p>
       <h3>Finalités et bases de traitement</h3>
-      <ul>
-        <li>Créer et gérer le profil, vérifier l’adresse e-mail si tu choisis ce mode, enregistrer la partie officielle et fournir les statistiques et classements : exécution du service de jeu et de classement que tu utilises.</li>
-        <li>Vérifier la preuve Game Center, empêcher sa réutilisation et protéger le service : intérêt légitime à sécuriser DicoDay et à assurer l’intégrité des scores.</li>
-      </ul>
-      <p>DicoDay n’utilise pas ces données pour la publicité, le suivi entre apps ou sites, ni la vente de données. L’adresse e-mail est facultative et demandée uniquement si tu choisis ce mode de compte. DicoDay ne demande pas ton nom civil, ton numéro de téléphone ou ta localisation.</p>
-
+      <ul><li>Créer et gérer le profil, vérifier l’adresse e-mail si tu choisis ce mode, enregistrer les parties officielles et fournir les statistiques et classements : exécution du service de jeu que tu utilises.</li><li>Vérifier la preuve Game Center, empêcher sa réutilisation et protéger le service : intérêt légitime à sécuriser DicoDay et à assurer l’intégrité des scores.</li><li>Afficher et mesurer des publicités : selon la région et le traitement, sur la base de ton consentement lorsqu’il est requis ou d’une autre base applicable présentée par les partenaires.</li></ul>
+      <p>DicoDay n’utilise pas l’adresse e-mail, le pseudo, le profil Game Center, les scores ou le contenu des parties pour choisir ou personnaliser les publicités. Ces données de compte ne sont pas transmises à Google à des fins publicitaires. L’e-mail est facultatif. DicoDay ne demande pas ton nom civil, ton numéro de téléphone ou ta localisation précise.</p>
+      <h3>Publicités et SDK Google Mobile Ads</h3>
+      <p>DicoDay intègre le SDK Google Mobile Ads (AdMob). Les emplacements prévus sont une bannière dans l’écran « Vos scores » et une annonce interstitielle après trois parties non classées ; une interstitielle peut être une vidéo ou un autre format publicitaire. Le SDK peut traiter ou transmettre à Google l’adresse IP (qui peut servir à estimer une localisation générale), des identifiants de l’appareil et, lorsqu’il est disponible, l’identifiant publicitaire Apple, des informations sur les annonces affichées et les interactions, ainsi que des données de diagnostic et de performance. Google indique utiliser ces données pour diffuser et mesurer les annonces, analyser le service et prévenir les fraudes. Google et les partenaires publicitaires activés pour l’app peuvent traiter ces informations selon leurs propres politiques, notamment la <a href="https://policies.google.com/privacy">politique de confidentialité de Google</a>.</p>
+      <p>Le SDK Google User Messaging Platform (UMP) est intégré pour mettre à jour les choix de consentement et afficher les messages de confidentialité AdMob activés pour DicoDay lorsque la réglementation l’exige. Lorsque l’option de confidentialité est requise, elle est accessible depuis l’écran « Confidentialité et compte ». Sur iOS, l’accès à l’identifiant publicitaire à des fins de suivi entre apps nécessite l’autorisation App Tracking Transparency d’Apple. Refuser cette autorisation n’empêche pas nécessairement l’affichage d’annonces non personnalisées ; tu peux aussi gérer l’autorisation dans les réglages iOS.</p>
       <h3>Destinataires et hébergement</h3>
-      <p>Les données de compte et de scores sont hébergées sur un VPS OVHcloud situé à Francfort, en Allemagne. Des copies de sauvegarde sont transférées par SSH vers un NAS privé situé en France. L’accès à ces copies est restreint au compte d’administration DicoDay. Les dumps PostgreSQL et leurs copies sur le NAS sont purgés après 14 jours au maximum. OVHcloud indique que son backup automatisé permet une restauration sur 7 jours ; ces points de restauration suivent une rotation distincte des dumps DicoDay.</p>
-      <p>Game Center est un service d’Apple, soumis à la <a href="https://www.apple.com/legal/privacy/">politique de confidentialité d’Apple</a>. La distribution bêta utilise également TestFlight ; Apple traite les données nécessaires à ce service, notamment les invitations, installations, retours et diagnostics, selon ses propres règles.</p>
-
+      <p>Les données de compte et de scores sont hébergées sur un VPS OVHcloud à Francfort, en Allemagne. Des sauvegardes sont transférées par SSH vers un NAS privé en France. Les dumps DicoDay et leurs copies sont purgés après 14 jours au maximum ; les points de restauration automatisés OVHcloud suivent leur propre fenêtre de conservation de 7 jours.</p>
+      <p>Game Center est un service d’Apple, soumis à la <a href="https://www.apple.com/legal/privacy/">politique de confidentialité d’Apple</a>. La distribution bêta utilise aussi TestFlight ; Apple traite les données nécessaires à ce service selon ses propres règles.</p>
       <h3>Durée de conservation et suppression du compte</h3>
-      <p>Le profil, l’empreinte de l’adresse e-mail si tu as choisi ce mode, le nom d’affichage, les résultats officiels et les statistiques restent dans la base active jusqu’à la suppression du compte ; les profils inactifs ne sont pas supprimés automatiquement pour le moment. Les demandes de vérification non terminées expirent après 10 minutes. Tu peux supprimer le compte DicoDay et les données associées depuis l’écran « Confidentialité et compte ». Si l’option n’apparaît pas ou si la suppression échoue, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20suppression%20du%20compte">pascal.mourier@gmail.com</a>. La suppression de ton profil DicoDay ne supprime pas ton compte Apple ou Game Center. Les sauvegardes DicoDay expirent au plus tard après 14 jours ; les sauvegardes automatisées OVHcloud sont conservées dans la fenêtre de restauration de 7 jours indiquée par OVHcloud.</p>
-      <p>Les empreintes temporaires de preuve Game Center servent à empêcher les rejeux. Leur validité est limitée à 10 minutes ; les empreintes expirées sont nettoyées lors du traitement d’une nouvelle connexion Game Center.</p>
-
+      <p>Le profil, l’empreinte de l’adresse e-mail, le nom d’affichage, les résultats officiels et les statistiques restent dans la base active jusqu’à la suppression du compte. Les demandes de vérification inachevées expirent après 10 minutes. Tu peux supprimer ton compte et les données associées depuis l’écran « Confidentialité et compte ». En cas de difficulté, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20suppression%20du%20compte">pascal.mourier@gmail.com</a>. Supprimer ton profil DicoDay ne supprime pas ton compte Apple ou Game Center. Les copies de sauvegarde suivent les délais indiqués ci-dessus.</p>
       <h3>Tes droits</h3>
-      <p>Tu peux demander l’accès à tes données, leur rectification, leur effacement ou la limitation du traitement, et exercer ton droit d’opposition ou de portabilité lorsque les conditions légales sont réunies. Tu peux aussi saisir la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>. Pour nous contacter, écris à <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>. Pour corriger le nom d’affichage, modifie-le dans Game Center ; DicoDay le mettra à jour lors de ta prochaine connexion.</p>
-
+      <p>Tu peux demander l’accès à tes données, leur rectification ou leur effacement, la limitation du traitement, et exercer tes droits d’opposition ou de portabilité lorsque les conditions légales sont réunies. Tu peux aussi saisir la <a href="https://www.cnil.fr/fr/plaintes">CNIL</a>. Pour nous contacter : <a href="mailto:pascal.mourier@gmail.com?subject=DicoDay%20-%20confidentialit%C3%A9">pascal.mourier@gmail.com</a>.</p>
       <h3>Hébergement de cette page</h3>
-      <p>Cette page est hébergée par GitHub Pages. GitHub peut traiter des données techniques de connexion pour fournir et sécuriser l’hébergement, selon la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">politique de confidentialité de GitHub</a>. Cette page n’ajoute pas de cookie publicitaire ni d’outil d’analyse.</p>
+      <p>Cette page est hébergée par GitHub Pages. GitHub peut traiter des données techniques de connexion pour fournir et sécuriser l’hébergement, selon sa <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">politique de confidentialité</a>. Cette page n’ajoute pas de cookie publicitaire ni d’outil d’analyse.</p>
     </section>
   </main>
-
-  <footer>
-    <div class="wrap">
-      <span>© 2026 DicoDay — Version bêta</span>
-      <a href="#confidentialite">Politique de confidentialité</a>
-    </div>
-  </footer>
+  <footer><div class="wrap"><span>© 2026 DicoDay — Version bêta</span><a href="#confidentialite">Politique de confidentialité</a></div></footer>
 </body>
 </html>
